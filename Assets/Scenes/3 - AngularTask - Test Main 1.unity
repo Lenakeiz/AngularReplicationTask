@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571322, b: 0.30692163, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -306,15 +306,15 @@ MonoBehaviour:
   AngularTaskPrefabAntiClock: {fileID: 7652625030102803330, guid: 4c5803e37807f2845b637b9c9467d7af, type: 3}
   NextBlockRef: {fileID: 902919007}
   YRotations:
-  - 150
-  - 330
-  - 210
+  - 315
+  - 135
+  - 225
   - 120
-  - 240
-  - 60
+  - 45
   - 300
-  Anticlockwise: 00000100000100
-  Shift: 0.5
+  - 60
+  - 240
+  Anticlockwise: 0001000100010001
 --- !u!1001 &532770420
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -449,15 +449,15 @@ MonoBehaviour:
   AngularTaskPrefabAntiClock: {fileID: 7652625030102803330, guid: 4c5803e37807f2845b637b9c9467d7af, type: 3}
   NextBlockRef: {fileID: 0}
   YRotations:
+  - 300
+  - 60
   - 120
   - 240
-  - 330
-  - 60
-  - 300
-  - 210
-  - 150
-  Anticlockwise: 01000100000100
-  Shift: 0.5
+  - 315
+  - 135
+  - 45
+  - 225
+  Anticlockwise: 0100010001000100
 --- !u!4 &547035403
 Transform:
   m_ObjectHideFlags: 0
@@ -798,15 +798,15 @@ MonoBehaviour:
   AngularTaskPrefabAntiClock: {fileID: 7652625030102803330, guid: 4c5803e37807f2845b637b9c9467d7af, type: 3}
   NextBlockRef: {fileID: 1299867816}
   YRotations:
-  - 330
-  - 210
-  - 240
+  - 45
   - 120
   - 60
+  - 135
+  - 315
+  - 225
+  - 240
   - 300
-  - 150
-  Anticlockwise: 01000101000101
-  Shift: 0.5
+  Anticlockwise: 0100010001000100
 --- !u!4 &902919009
 Transform:
   m_ObjectHideFlags: 0
@@ -995,15 +995,15 @@ MonoBehaviour:
   AngularTaskPrefabAntiClock: {fileID: 7652625030102803330, guid: 4c5803e37807f2845b637b9c9467d7af, type: 3}
   NextBlockRef: {fileID: 1990718290}
   YRotations:
+  - 315
+  - 120
+  - 225
+  - 300
+  - 135
+  - 45
   - 240
   - 60
-  - 120
-  - 330
-  - 210
-  - 150
-  - 300
-  Anticlockwise: 01000001000001
-  Shift: 0.5
+  Anticlockwise: 0100010001000100
 --- !u!4 &1299867818
 Transform:
   m_ObjectHideFlags: 0
@@ -1052,15 +1052,15 @@ MonoBehaviour:
   AngularTaskPrefabAntiClock: {fileID: 7652625030102803330, guid: 4c5803e37807f2845b637b9c9467d7af, type: 3}
   NextBlockRef: {fileID: 547035401}
   YRotations:
-  - 210
+  - 315
   - 300
-  - 240
   - 60
+  - 45
+  - 135
+  - 240
+  - 225
   - 120
-  - 150
-  - 330
-  Anticlockwise: 00010101000100
-  Shift: 0.5
+  Anticlockwise: 0001000100010001
 --- !u!4 &1437133462
 Transform:
   m_ObjectHideFlags: 0
@@ -1153,15 +1153,15 @@ MonoBehaviour:
   AngularTaskPrefabAntiClock: {fileID: 7652625030102803330, guid: 4c5803e37807f2845b637b9c9467d7af, type: 3}
   NextBlockRef: {fileID: 1437133460}
   YRotations:
-  - 60
-  - 150
-  - 330
-  - 240
   - 120
+  - 240
   - 300
-  - 210
-  Anticlockwise: 01010000010001
-  Shift: 0.5
+  - 60
+  - 135
+  - 225
+  - 45
+  - 315
+  Anticlockwise: 0001000100010001
 --- !u!4 &1990718292
 Transform:
   m_ObjectHideFlags: 0

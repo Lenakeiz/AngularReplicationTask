@@ -745,6 +745,7 @@ MonoBehaviour:
   RightAntiClockwiseDir: {fileID: 6956554709431589706}
   WrongAntiClockwiseDir: {fileID: 6956554709915275626}
   alphaChange: 4
+  lerpChange: 0.01
   Clockwise: 1
 --- !u!1 &3118671381192389650
 GameObject:
@@ -2748,7 +2749,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7803555590842061483}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2845,7 +2846,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7803555591980113351}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3168,6 +3169,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6956554709771517207}
     m_Modifications:
+    - target: {fileID: 5725896087187748320, guid: 9d5e5644f5b5161479da91442fadee9b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5725896087187748322, guid: 9d5e5644f5b5161479da91442fadee9b, type: 3}
       propertyPath: m_Name
       value: Arrow2D

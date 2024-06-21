@@ -619,7 +619,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3899887010144130486}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -716,7 +716,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3899887011122010842}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -899,6 +899,8 @@ MonoBehaviour:
   arrow: {fileID: 0}
   delay: 2
   checkTime: 6
+  delaySpawn: 3
+  canSpawn: 0
 --- !u!1 &6107904137842667249
 GameObject:
   m_ObjectHideFlags: 0
@@ -1020,6 +1022,7 @@ MonoBehaviour:
   instructionsAudioSource: {fileID: 6089588375548284656}
   gazeSound: {fileID: 8300000, guid: 48659d20363bd2a4aa89cbbcf5772c19, type: 3}
   instructionsSound: {fileID: 8300000, guid: 4f294c3df6b074548b39dc9961e217a7, type: 3}
+  Stay: 0
 --- !u!82 &6089588375548284663
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1227,6 +1230,7 @@ GameObject:
   - component: {fileID: 4241906252264399624}
   - component: {fileID: 6107904137866034927}
   - component: {fileID: 6107904137866034920}
+  - component: {fileID: 5252163358989729145}
   m_Layer: 0
   m_Name: First Marker
   m_TagString: hasInfo
@@ -1333,6 +1337,7 @@ MonoBehaviour:
   instructionsAudioSource: {fileID: 6107904137866034920}
   gazeSound: {fileID: 8300000, guid: 48659d20363bd2a4aa89cbbcf5772c19, type: 3}
   instructionsSound: {fileID: 8300000, guid: bd21036633a12d44780766bfa4cdc035, type: 3}
+  Stay: 0
 --- !u!82 &6107904137866034927
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1525,6 +1530,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5252163358989729145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6107904137866034926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8002e2f9263bf7549b5e0500f29df41b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7257300612507564073
 GameObject:
   m_ObjectHideFlags: 0
@@ -2016,4 +2033,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63562dc2ce78cd84ba0091a35af8d924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}

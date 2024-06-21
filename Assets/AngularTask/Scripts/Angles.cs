@@ -4,59 +4,67 @@ using UnityEngine;
 
 public class Angles : MonoBehaviour
 {
-    public GameObject AngularTaskPrefabClock;
-    public GameObject AngularTaskPrefabAntiClock;
-    public GameObject NextBlockRef;
-    public float[] YRotations = new float[7];
-    public bool[] Anticlockwise = new bool[7];
-    public float Shift = 0.5f;
+    public GameObject AngularTaskPrefabClock; // Prefab for clock-wise rotation markers
+    public GameObject AngularTaskPrefabAntiClock; // Prefab for anti-clockwise rotation markers
+    public GameObject NextBlockRef; // Reference to the next block object
+    public float[] YRotations = new float[8]; // Array of Y rotations for each marker
+    public bool[] Anticlockwise = new bool[8]; // Direction array for marker rotation
 
-    private GameObject[] angularInstances = new GameObject[7];
+    private GameObject[] angularInstances = new GameObject[8]; // Array to store instances of markers
+    private Vector3 originalStartingPoint = Vector3.zero; // Starting point for positioning markers
 
     void Start()
     {
+        originalStartingPoint = new Vector3(0, 0, 0); // Initialize starting point
+
+        for (int i = 0; i < 8; i++)
+        {
+            Vector3 randomShift = GetRandomShiftWithinRadius(originalStartingPoint); // Get a random position within a radius
+            GameObject prefabToUse = Anticlockwise[i] ? AngularTaskPrefabAntiClock : AngularTaskPrefabClock; // Select the correct prefab based on rotation direction
+            angularInstances[i] = Instantiate(prefabToUse, originalStartingPoint + randomShift, Quaternion.identity, transform); // Instantiate the marker
+
+            // Set rotation
+            float rotation = Anticlockwise[i] ? -YRotations[i] : YRotations[i];
+            RotateChildObjects(angularInstances[i], rotation);
+
+            // Log the rotation and direction
+            Debug.Log($"Marker {i}: Rotation = {rotation}, Anticlockwise = {Anticlockwise[i]}");
+
+            // Set yRotation in SpawnEndMark
+            angularInstances[i].GetComponent<SpawnEndMark>().yRotation = YRotations[i];
+
+            // Set Anticlockwise in SpawnEndMark
+            angularInstances[i].GetComponent<SpawnEndMark>().Anticlockwise = Anticlockwise[i];
+
+            // Set YRotation and isAnticlockwise in nextMarker script
+            nextMarker nm = angularInstances[i].GetComponent<nextMarker>(); //nm = nextMarker 
+            if (nm != null)
+            {
+                nm.YRotation = YRotations[i];
+                nm.isAnticlockwise = Anticlockwise[i]; // Ensure isAnticlockwise is set
+            }
+
+            if (i != 0)
+            {
+                angularInstances[i].SetActive(false); // Set all markers except the first one to inactive
+            }
+
+            if (i == 7) // If this is the last instance
+            {
+                angularInstances[i].GetComponent<SpawnEndMark>().NextBlock = NextBlockRef; // Link the last instance to the next block reference
+            }
+        }
+
         for (int i = 0; i < 7; i++)
         {
-            // Calculate shift. First 4 move forward, the last 3 move backward.
-            float currentShift = (i < 4) ? Shift * i : Shift * 3 - Shift * (i - 3);
-
-            // Determine which prefab to use based on Anticlockwise array
-            GameObject prefabToUse = Anticlockwise[i] ? AngularTaskPrefabAntiClock : AngularTaskPrefabClock;
-            if (prefabToUse != null)
-            {
-                // Instantiate the chosen prefab at specified positions
-                angularInstances[i] = Instantiate(prefabToUse, transform.position + new Vector3(0, 0, currentShift), Quaternion.identity, transform);
-                angularInstances[i].GetComponent<SpawnEndMark>().Anticlockwise = Anticlockwise[i];
-
-                // If not the first instance, set active to false
-                if (i != 0)
-                {
-                    angularInstances[i].SetActive(false);
-                }
-
-                // Set rotation
-                RotateChildObjects(angularInstances[i], Anticlockwise[i] ? -YRotations[i] : YRotations[i]);
-
-                // Set yRotation in SpawnEndMark
-                angularInstances[i].GetComponent<SpawnEndMark>().yRotation = YRotations[i];
-            }
-
-            // If it's the 7th object, assign the NextBlockRef to it
-            if (i == 6 && angularInstances[i] != null)
-            {
-                angularInstances[i].GetComponent<SpawnEndMark>().NextBlock = NextBlockRef;
-            }
+            angularInstances[i].GetComponent<SpawnEndMark>().nextAngle = angularInstances[i + 1]; // Link the next and previous angles
         }
+    }
 
-        // Set nextAngle and prevAngle fields
-        for (int i = 0; i < 6; i++) // Till 6 because the last instance doesn't have a next instance
-        {
-            var spawnEndMark = angularInstances[i].GetComponent<SpawnEndMark>();
-            if (spawnEndMark != null)
-            {
-                spawnEndMark.nextAngle = angularInstances[i + 1];
-            }
-        }
+    private Vector3 GetRandomShiftWithinRadius(Vector3 origin)
+    {
+        Vector2 randomCircle = Random.insideUnitCircle * 1.0f; // Calculate a random position within a 1-unit circle
+        return new Vector3(randomCircle.x, 0, randomCircle.y); // Return the new position
     }
 
     void RotateChildObjects(GameObject parent, float rotation)

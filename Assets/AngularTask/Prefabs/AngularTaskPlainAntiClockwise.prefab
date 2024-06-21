@@ -229,6 +229,7 @@ GameObject:
   - component: {fileID: 7652625028929256147}
   - component: {fileID: 80405256203477261}
   - component: {fileID: 301302314797999929}
+  - component: {fileID: 1382050808327780731}
   m_Layer: 0
   m_Name: First Marker
   m_TagString: hasInfo
@@ -244,7 +245,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301302314797999928}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 150.00012, z: 0.4}
+  m_LocalPosition: {x: 0.0062, y: 176, z: 0.4}
   m_LocalScale: {x: 0.060000002, y: 30, z: 0.060000002}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -429,6 +430,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &1382050808327780731
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301302314797999928}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: -0.0000014305115}
 --- !u!1 &3772555085999104511
 GameObject:
   m_ObjectHideFlags: 0
@@ -1176,7 +1190,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7418268864818973792}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1273,7 +1287,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7418268865798030092}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1413,6 +1427,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7652625030102803331}
   - component: {fileID: 1152940772087378181}
+  - component: {fileID: 8026096537541578384}
   m_Layer: 0
   m_Name: AngularTaskPlainAntiClockwise
   m_TagString: Untagged
@@ -1458,6 +1473,23 @@ MonoBehaviour:
   checkTime: 4
   yRotation: 0
   Anticlockwise: 0
+--- !u!114 &8026096537541578384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7652625030102803330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2758b39993e266448a19f7cd56bb253e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextMark: {fileID: 7652625028902314541}
+  lastMark: {fileID: 7652625030053670067}
+  arCamera: {fileID: 0}
+  YRotation: 0
+  isAnticlockwise: 0
 --- !u!1 &8448508578721707764
 GameObject:
   m_ObjectHideFlags: 0
@@ -1757,6 +1789,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9128371758949010195}
     m_Modifications:
+    - target: {fileID: 5725896087187748320, guid: 9d5e5644f5b5161479da91442fadee9b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5725896087187748322, guid: 9d5e5644f5b5161479da91442fadee9b, type: 3}
       propertyPath: m_Name
       value: Arrow2D

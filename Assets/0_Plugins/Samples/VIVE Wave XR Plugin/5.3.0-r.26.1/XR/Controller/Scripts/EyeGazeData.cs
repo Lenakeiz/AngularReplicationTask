@@ -196,7 +196,7 @@ namespace Wave.XR.Sample.Controller
 			}
 			else
 			{
-				m_Text.text += "Position: " + posText ;
+				m_Text.text += "Position: " + posText;
 			}
 			m_Text.text += "\n";
 

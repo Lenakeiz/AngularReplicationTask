@@ -42,8 +42,10 @@
       "version": "https://github.com/Lenakeiz/SpaceMemUtilities.git",
       "depth": 0,
       "source": "git",
-      "dependencies": {},
-      "hash": "bc5f4ef8e138b7cd764b15cf717cbc099e5180d8"
+      "dependencies": {
+        "com.unity.textmeshpro": "3.0.6"
+      },
+      "hash": "6eb38d0bb5017995451422b6bf1074b9ae0ebabf"
     },
     "com.unity.collab-proxy": {
       "version": "2.0.4",

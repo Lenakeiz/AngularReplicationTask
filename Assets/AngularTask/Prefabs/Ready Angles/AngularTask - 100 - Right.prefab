@@ -394,7 +394,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63562dc2ce78cd84ba0091a35af8d924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!1 &1621828384900109890
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,6 +612,7 @@ MonoBehaviour:
   instructionsAudioSource: {fileID: 3679487019960853713}
   gazeSound: {fileID: 8300000, guid: 48659d20363bd2a4aa89cbbcf5772c19, type: 3}
   instructionsSound: {fileID: 8300000, guid: 4f294c3df6b074548b39dc9961e217a7, type: 3}
+  Stay: 0
 --- !u!82 &3679487019960853718
 AudioSource:
   m_ObjectHideFlags: 0
@@ -820,6 +820,7 @@ GameObject:
   - component: {fileID: 6723028638493591849}
   - component: {fileID: 3697767409196635342}
   - component: {fileID: 3697767409196635337}
+  - component: {fileID: 7404834375295519303}
   m_Layer: 0
   m_Name: First Marker
   m_TagString: hasInfo
@@ -926,6 +927,7 @@ MonoBehaviour:
   instructionsAudioSource: {fileID: 3697767409196635337}
   gazeSound: {fileID: 8300000, guid: 48659d20363bd2a4aa89cbbcf5772c19, type: 3}
   instructionsSound: {fileID: 8300000, guid: bd21036633a12d44780766bfa4cdc035, type: 3}
+  Stay: 0
 --- !u!82 &3697767409196635342
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1118,6 +1120,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7404834375295519303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3697767409196635343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8002e2f9263bf7549b5e0500f29df41b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4773897846525723907
 GameObject:
   m_ObjectHideFlags: 0
@@ -1369,7 +1383,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5876519374944681879}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1466,7 +1480,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5876519376074338555}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1608,6 +1622,8 @@ MonoBehaviour:
   arrow: {fileID: 0}
   delay: 2
   checkTime: 6
+  delaySpawn: 3
+  canSpawn: 0
 --- !u!1 &6723028639618408260
 GameObject:
   m_ObjectHideFlags: 0
