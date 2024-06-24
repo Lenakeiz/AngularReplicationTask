@@ -19,45 +19,57 @@ public class Angles : MonoBehaviour
 
         for (int i = 0; i < 8; i++)
         {
-            Vector3 randomShift = GetRandomShiftWithinRadius(originalStartingPoint); // Get a random position within a radius
-            GameObject prefabToUse = Anticlockwise[i] ? AngularTaskPrefabAntiClock : AngularTaskPrefabClock; // Select the correct prefab based on rotation direction
-            angularInstances[i] = Instantiate(prefabToUse, originalStartingPoint + randomShift, Quaternion.identity, transform); // Instantiate the marker
+            // Get a random position within a radius
+            Vector3 randomShift = GetRandomShiftWithinRadius(originalStartingPoint);
 
-            // Set rotation
-            float rotation = Anticlockwise[i] ? -YRotations[i] : YRotations[i];
-            RotateChildObjects(angularInstances[i], rotation);
-
-            // Log the rotation and direction
-            Debug.Log($"Marker {i}: Rotation = {rotation}, Anticlockwise = {Anticlockwise[i]}");
-
-            // Set yRotation in SpawnEndMark
-            angularInstances[i].GetComponent<SpawnEndMark>().yRotation = YRotations[i];
-
-            // Set Anticlockwise in SpawnEndMark
-            angularInstances[i].GetComponent<SpawnEndMark>().Anticlockwise = Anticlockwise[i];
-
-            // Set YRotation and isAnticlockwise in nextMarker script
-            nextMarker nm = angularInstances[i].GetComponent<nextMarker>(); //nm = nextMarker 
-            if (nm != null)
+            // Determine which prefab to use based on Anticlockwise array
+            GameObject prefabToUse = Anticlockwise[i] ? AngularTaskPrefabAntiClock : AngularTaskPrefabClock;
+            if (prefabToUse != null)
             {
-                nm.YRotation = YRotations[i];
-                nm.isAnticlockwise = Anticlockwise[i]; // Ensure isAnticlockwise is set
+                // Instantiate the chosen prefab at specified positions
+                angularInstances[i] = Instantiate(prefabToUse, originalStartingPoint + randomShift, Quaternion.identity, transform);
+                angularInstances[i].GetComponent<SpawnEndMark>().Anticlockwise = Anticlockwise[i];
+
+                // If not the first instance, set active to false 
+                if (i != 0)
+                {
+                    angularInstances[i].SetActive(false); // Set all markers except the first one to inactive
+                }
+
+                // Set rotation
+                RotateChildObjects(angularInstances[i], Anticlockwise[i] ? -YRotations[i] : YRotations[i]);
+
+                // Set yRotation in SpawnEndMark
+                angularInstances[i].GetComponent<SpawnEndMark>().yRotation = YRotations[i];
             }
 
-            if (i != 0)
+            // If it's the last (8th) instance, assign the NextBlockRef to it
+            if (i == 7 && angularInstances[i] != null)
             {
-                angularInstances[i].SetActive(false); // Set all markers except the first one to inactive
+                angularInstances[i].GetComponent<SpawnEndMark>().NextBlock = NextBlockRef; // Link the last instance to the next block reference // I don't think this is interfering with block structure with breaks?
             }
 
-            if (i == 7) // If this is the last instance
+            // Assign configurations for breaks and completion
+            // Do I modify this code chunk and move it under the prev condition: if NextBlockRef name contains (or a more efficient method) ... etc
+            BlockConfig config = angularInstances[i].GetComponent<BlockConfig>() ?? angularInstances[i].AddComponent<BlockConfig>();
+            if (angularInstances[i].name.Contains("A2") || angularInstances[i].name.Contains("B2"))
             {
-                angularInstances[i].GetComponent<SpawnEndMark>().NextBlock = NextBlockRef; // Link the last instance to the next block reference
+                config.requiresBreak = true;
+            }
+            if (angularInstances[i].name.Contains("C2"))
+            {
+                config.isFinalBlock = true;
             }
         }
 
+        // Set nextAngle and prevAngle fields (linking the next and prev angles)
         for (int i = 0; i < 7; i++)
         {
-            angularInstances[i].GetComponent<SpawnEndMark>().nextAngle = angularInstances[i + 1]; // Link the next and previous angles
+            var spawnEndMark = angularInstances[i].GetComponent<SpawnEndMark>();
+            if (spawnEndMark != null)
+            {
+                spawnEndMark.nextAngle = angularInstances[i + 1];
+            }
         }
     }
 

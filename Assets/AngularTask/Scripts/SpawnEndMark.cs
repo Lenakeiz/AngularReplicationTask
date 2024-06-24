@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Wave.OpenXR.Toolkit.Samples;
 
@@ -8,6 +7,8 @@ public class SpawnEndMark : MonoBehaviour
     public GameObject endMarker;
     public GameObject nextAngle;
     public GameObject NextBlock;
+    public GameObject BreakPanel;  // Reference to the break panel
+    public GameObject CompletionPanel;  // Reference to the completion panel
     public float delay = 2f;
     public float checkTime = 6f;
     private GameObject currentEndMarker;
@@ -45,6 +46,7 @@ public class SpawnEndMark : MonoBehaviour
 
             if (rotationLogger != null && rotationLogger.DoesCsvExist())
             {
+                Debug.Log("[SpawnEndMark] Logging rotation for marker: Main Camera Angle = " + mainCamera.transform.rotation.eulerAngles + ", Position = " + mainCamera.transform.position + ", yRotation = " + yRotation + ", Anticlockwise = " + Anticlockwise);
                 rotationLogger.LogRotation("MarkerSpawned", mainCamera.transform.rotation.eulerAngles, mainCamera.transform.position, yRotation, Anticlockwise);
             }
 
@@ -59,12 +61,14 @@ public class SpawnEndMark : MonoBehaviour
 
                 Vector3 cameraRotation = mainCamera.transform.rotation.eulerAngles;
                 currentEndMarker = Instantiate(endMarker, this.transform.position, Quaternion.Euler(0, cameraRotation.y, 0));
+                Debug.Log("Current rotation set to: " + yRotation);
 
                 StartCoroutine(ButtonCooldown());
                 StartCoroutine(CheckButtonPress());
             }
         }
     }
+
 
     IEnumerator ButtonCooldown()
     {
@@ -79,18 +83,42 @@ public class SpawnEndMark : MonoBehaviour
         yield return new WaitForSeconds(checkTime);
         if (!buttonPressedAgain)
         {
+            Debug.Log("[SpawnEndMark] CheckButtonPress: No additional button press detected.");
+
             if (nextAngle != null)
             {
+                Debug.Log("Activating Next Angle: " + nextAngle.name);
                 nextAngle.SetActive(true);
                 UIManager.Instance.StartFadeIn();
                 gameObject.SetActive(false);
             }
             else if (NextBlock != null)
             {
-                //UIManager.Instance.StartFadeIn(); // Change this to another UI element to say to have a break or something
-                NextBlock.SetActive(true);
-                Destroy(transform.parent.gameObject);
+                Debug.Log("Activating Next Block: " + NextBlock.name);
+                if (NextBlock.GetComponent<BlockConfig>().requiresBreak)
+                {
+                    BreakPanel.SetActive(true); // Activate the break panel when required
+                }
+                else if (NextBlock.GetComponent<BlockConfig>().isFinalBlock)
+                {
+                    CompletionPanel.SetActive(true); // Activate the completion panel if it's the final block
+                }
+                else
+                {
+                    NextBlock.SetActive(true);
+                    Destroy(transform.parent.gameObject);
+                }
             }
+        }
+    }
+
+
+    public void ContinueGame()
+    {
+        BreakPanel.SetActive(false); // Hide the break panel
+        if (NextBlock != null)
+        {
+            NextBlock.SetActive(true); // Activate the next block directly here 
         }
     }
 }
